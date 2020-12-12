@@ -1,30 +1,32 @@
 import React, { useState } from 'react';
 import { Menu } from 'antd';
 import Emoji from 'a11y-react-emoji';
-import { UserOutlined } from '@ant-design/icons';
+import {Link} from 'react-router-dom';
 
-
-const { SubMenu } = Menu;
+const { SubMenu,Item } = Menu;
 const Header = () => {
-    const [current, setCurrent] =useState("");
-    const handleClick = () => {
-        //TODO
+    const [current, setCurrent] =useState("home");
+    const handleClick = (e) => {
+    
+        setCurrent(e.key);
     };
     return (
-        <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
-        <Menu.Item key="mail">
-          Home <Emoji symbol="😀" label="grinding face"/>
-        </Menu.Item>
-        <SubMenu
-          key="SubMenu"
-          icon={<UserOutlined />}
-          title="Register">
-            <Menu.Item key="setting:1">Option 1</Menu.Item>
-            <Menu.Item key="setting:2">Option 2</Menu.Item>
-        </SubMenu>
-      </Menu>
-
-  
+    
+        <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal"  className="p-3">
+            <Item key="home">
+                <h5><Emoji symbol="💡" label="Light Bulb"/>Creeando-Marketplace</h5>
+                <Link to="/"/>
+            </Item>
+            <Item key="login" className="float-right">
+                <Emoji symbol="👩‍🚀" label="Women astronaut"/> Ingresar
+                <Link to="/login"/>
+            </Item>
+            <Item key="register" className="float-right">
+                <Emoji symbol="👶" label="Baby"/> Registro
+                <Link to="/register"/>
+            </Item>
+        </Menu>
+        
     );
   }
   
